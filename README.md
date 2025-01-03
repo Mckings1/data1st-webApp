@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-# data1st-webApp
+
+# Data1st-webApp
 =======
 # Getting Started with Create React App
 
