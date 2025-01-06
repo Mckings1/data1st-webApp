@@ -7,17 +7,29 @@ function Nav() {
   return (
     <nav className="nav">
       <div className="logo-container">
+        {/* logo */}
+        <Link to="/">
+          <img src={image} alt="logo" className="logo-image" />
+        </Link>
         <ul className="list-items">
-          {/* logo */}
-          <Link to="/">
-            <img src={image} alt="logo" className="logo-image" />
-          </Link>
           {/* NavLink */}
-          <NavLink to="/" className="">
-            <p className="navlink-list">Home</p>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "navlink-list active" : "navlink-list"
+            }
+          >
+            Home
+            {/* <p className="navlink-list">Home</p> */}
           </NavLink>
-          <NavLink to="/Howitworks" className="">
-            <p className="navlink-list">How it works</p>
+          <NavLink
+            to="/Howitworks"
+            className={({ isActive }) =>
+              isActive ? "navlink-list active" : "navlink-list"
+            }
+          >
+            How it Works
+            {/* <p className="navlink-list">How it Works</p> */}
           </NavLink>
         </ul>
       </div>
