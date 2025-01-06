@@ -9,119 +9,108 @@ import network7 from "../Images/fiberone.png";
 import network8 from "../Images/smile-logo 1.png";
 import network9 from "../Images/swfitnglogo-removebg-preview 1.png";
 import network10 from "../Images/spectranet_ng_logo.png";
+import whatsappLogo from "../Images/whatsapp.png";
 
 function SelectNetwork() {
   const [selectedNetwork, setSelectedNetwork] = useState(null);
 
   const handleLogoClick = (network) => {
-    setSelectedNetwork(network);
+    if (selectedNetwork === network) {
+      setSelectedNetwork(null);
+    } else {
+      setSelectedNetwork(network);
+    }
   };
 
   return (
     <div className="select-network-container">
-      <h2 className="title">Select your network</h2>
-
+      <h4 className="select-network">Select your network</h4>
       {/* Network logos */}
       <div className="network-logos">
-        <div className="row">
-          <img
-            src={network1}
-            alt="Network 1"
-            className="network-logo"
-            onClick={() => handleLogoClick("Network 1")}
-          />
-          <img
-            src={network2}
-            alt="Network 2"
-            className="network-logo"
-            onClick={() => handleLogoClick("Network 2")}
-          />
-          <img
-            src={network3}
-            alt="Network 3"
-            className="network-logo"
-            onClick={() => handleLogoClick("Network 3")}
-          />
-          <img
-            src={network4}
-            alt="Network 4"
-            className="network-logo"
-            onClick={() => handleLogoClick("Network 4")}
-          />
-          <img
-            src={network5}
-            alt="Network 5"
-            className="network-logo"
-            onClick={() => handleLogoClick("Network 5")}
-          />
+        <div className="row network-image">
+          {[network1, network2, network3, network4, network5].map(
+            (network, index) => (
+              <img
+                key={index}
+                src={network}
+                alt={`Network ${index + 1}`}
+                className={`network-logo ${
+                  selectedNetwork === `Network ${index + 1}` ? "selected" : ""
+                }`}
+                onClick={() => handleLogoClick(`Network ${index + 1}`)}
+              />
+            )
+          )}
         </div>
-        <div className="row">
-          <img
-            src={network6}
-            alt="Network 6"
-            className="network-logo"
-            onClick={() => handleLogoClick("Network 6")}
-          />
-          <img
-            src={network7}
-            alt="Network 7"
-            className="network-logo"
-            onClick={() => handleLogoClick("Network 7")}
-          />
-          <img
-            src={network8}
-            alt="Network 8"
-            className="network-logo"
-            onClick={() => handleLogoClick("Network 8")}
-          />
-          <img
-            src={network9}
-            alt="Network 9"
-            className="network-logo"
-            onClick={() => handleLogoClick("Network 9")}
-          />
-          <img
-            src={network10}
-            alt="Network 10"
-            className="network-logo"
-            onClick={() => handleLogoClick("Network 10")}
-          />
+        <div className="row network-image">
+          {[network6, network7, network8, network9, network10].map(
+            (network, index) => (
+              <img
+                key={index + 5}
+                src={network}
+                alt={`Network ${index + 6}`}
+                className={`network-logo ${
+                  selectedNetwork === `Network ${index + 6}` ? "selected" : ""
+                }`}
+                onClick={() => handleLogoClick(`Network ${index + 6}`)}
+              />
+            )
+          )}
         </div>
       </div>
 
       {/* Display Dropdown table when a network is selected */}
       {selectedNetwork && (
         <div className="dropdown-table">
-          <h3>{selectedNetwork} Details</h3>
           <table>
             <thead>
               <tr>
-                <th>Feature</th>
-                <th>Value</th>
+                <th>Data Plan</th>
+                <th>Price</th>
+                <th>Validity</th>
+                <th>Buy Online</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Data Plan</td>
                 <td>10GB</td>
-              </tr>
-              <tr>
-                <td>Price</td>
                 <td>$10</td>
-              </tr>
-              <tr>
-                <td>Validity</td>
                 <td>30 Days</td>
+                <td>
+                  <a href="https://example.com">Buy here</a>
+                </td>
               </tr>
-
               <tr>
-                <td>Buy Online</td>
-                <td>Buy here</td>
+                <td>20GB</td>
+                <td>$20</td>
+                <td>60 Days</td>
+                <td>
+                  <a href="https://example.com">Buy here</a>
+                </td>
+              </tr>
+              <tr>
+                <td>50GB</td>
+                <td>$50</td>
+                <td>90 Days</td>
+                <td>
+                  <a href="https://example.com">Buy here</a>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
       )}
+      {/* whatsapp logo */}
+      <div className="whatsapp-logo">
+        <a
+          href="https://wa.me/234123456789"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={whatsappLogo} alt="Message Us" />
+          Message Us
+        </a>
+      </div>
     </div>
   );
 }
