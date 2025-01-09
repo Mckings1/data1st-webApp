@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../Images/Frame 40071.png"; // Your image path
+import image from "../Images/Frame 40071.png";
 
 function Header() {
   return (

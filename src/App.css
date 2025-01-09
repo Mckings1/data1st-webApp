@@ -129,3 +129,63 @@
   font-weight: bold;
 }
 /* selectnetworkcss end*/
+
+/* Howweworkitcss  */
+/* Howweworkitcss end  */
+/* Testimonialreviewcss  */
+/* Testimonialreviewcss end  */
+
+/* Footercss */
+.footer {
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+.footer-container {
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  /* align-items: center; */
+  max-width: 1400px;
+  margin: 0 100px 0 120px;
+  /* margin-left: 150px; */
+  border: 2px solid #f0f0f0;
+}
+
+.footer-logo {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.footer-socials a {
+  margin: 0 10px;
+}
+
+.footer-socials img {
+  width: 30px;
+}
+.footer-middle a {
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  margin: 10px;
+}
+.footer-middle a p {
+  margin: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #332600;
+}
+.footer-middle img {
+  width: 40px;
+  height: 100%;
+}
+
+.footer-right p {
+  font-size: 20px;
+  font-weight: 600;
+  color: #332600;
+  /* align-items: center; */
+  text-align: center;
+}
+
+/* Footercss end*/
