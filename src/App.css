@@ -43,6 +43,11 @@
 }
 /* //navbarcss end*/
 /* Homecssheader */
+
+.header {
+  /* position: relative; */
+  height: auto;
+}
 .header-image {
   background-size: cover;
   width: 100%;
@@ -51,20 +56,18 @@
 
 /* selectnetworkcss */
 .select-network-container {
-  /* background-color: yellow; */
-  padding: 5px;
+  padding: 20px;
 }
 .select-network {
   color: #332600;
   text-align: center;
-  font-size: 38px;
+  font-size: 28px;
   font-weight: 500;
+
   /* line-height: 60px; */
 }
 .network-logos {
   text-align: center;
-  /* justify-content: space-between; */
-  /* background-color: red; */
 }
 .network-logo {
   width: 100px;
@@ -83,16 +86,8 @@
   cursor: pointer;
 }
 .network-logo.selected {
-  border: 2px solid black; /* Black border for selected image */
+  border: 2px solid black;
   box-sizing: border-box;
-}
-.whatsapp-logo {
-  position: sticky;
-  bottom: 20px;
-  width: 100px;
-  float: right;
-  margin-right: 100px;
-  cursor: pointer;
 }
 
 .whatsapp-logo a {
@@ -131,26 +126,46 @@
 /* selectnetworkcss end*/
 
 /* Howweworkitcss  */
+.how-we-work-container {
+  padding: 20px;
+  text-align: center;
+  border: 2px solid red;
+}
+.Howweworkit-title {
+  margin-bottom: 50px;
+  font-size: 28px;
+  font-weight: 500;
+  text-align: center;
+  color: #332600;
+}
 /* Howweworkitcss end  */
 
 /* Testimonialreviewcss  */
 .testimonial-container {
   padding: 20px;
   text-align: center;
+  position: relative;
 }
 
 .testimonial-title {
   margin-bottom: 50px;
   font-size: 28px;
   font-weight: 500;
-  text-align: center;
+  color: #332600;
+}
+
+.testimonial-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .testimonial-cards {
   display: flex;
   justify-content: center;
   gap: 70px;
-  position: relative;
+  overflow: hidden;
 }
 
 .testimonial-card {
@@ -179,28 +194,35 @@
   font-style: italic;
   font-size: 16px;
   font-weight: 500;
-  color: #333;
+  color: #332600;
 }
 
-.arrow-right,
-.arrow-left {
-  position: absolute;
-  cursor: pointer;
-}
+.arrow-left,
 .arrow-right {
-  right: -15px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  /* border-radius: 50%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
 }
 
 .arrow-left {
-  left: -580px;
-  bottom: 280px;
-  position: relative;
+  left: 50px;
+}
+
+.arrow-right {
+  right: 50px;
 }
 
 .dots-container {
   margin-top: 30px;
   margin-bottom: 70px;
-  background-color: #fff;
 }
 
 .dot {
@@ -214,7 +236,7 @@
 }
 
 .active-dot {
-  background-color: #806000;
+  background-color: #806000; /* Your preferred color */
 }
 
 /* Testimonialreviewcss end  */
@@ -223,16 +245,25 @@
 .footer {
   background-color: #eeeded;
   padding: 10px;
+  position: relative;
 }
-
+.whatsapp-logo {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  /* top: 50%; */
+  /* transform: translateY(-50%); */
+  z-index: 10;
+  width: 100px;
+  float: right;
+  cursor: pointer;
+}
 .footer-container {
   display: flex;
-  padding: 20px;
+  padding: 10px;
   justify-content: space-between;
   align-items: center;
-  max-width: 1400px;
-  margin: 0 100px 0 200px;
-  /* margin-left: 150px; */
+  margin: 0 100px 0 100px;
   border: 1px solid #f0f0f0;
 }
 
@@ -273,3 +304,47 @@
 }
 
 /* Footercss end*/
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .network-logo {
+    /* display: table-column-group; */
+    display: flow-root;
+  }
+  .testimonial-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-container {
+    display: inline;
+    text-align: center;
+    /* flex-wrap: wrap; */
+  }
+  .footer-logo {
+    width: 50%;
+  }
+  .footer-middle {
+    /* display: inline-flex; */
+    /* align-items: center; */
+    text-align: center;
+    /* background-color: red; */
+    place-items: center;
+    display: grid;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-image {
+    width: 60px;
+  }
+
+  .navlink-list {
+    padding: 5px;
+    font-size: small;
+  }
+
+  .testimonial-card {
+    width: 100%;
+  }
+}

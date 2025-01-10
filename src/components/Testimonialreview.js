@@ -105,22 +105,32 @@ const TestimonialReview = () => {
   return (
     <div className="testimonial-container">
       <h2 className="testimonial-title">Testimonial & Reviews</h2>
-      <div className="testimonial-cards">
-        {currentTestimonials.map((testimonial, index) => (
-          <div key={index} className="testimonial-card">
-            <h5 className="testimonial-name">{testimonial.name}</h5>
-            <p className="testimonial-role">{testimonial.role}</p>
-            <p className="testimonial-text">{`"${testimonial.text}"`}</p>
-            {index === 2 && totalSlides > 1 && (
-              <img
-                src={arrowfront}
-                alt="Next"
-                className="arrow-right"
-                onClick={handleNext}
-              />
-            )}
-          </div>
-        ))}
+      <div className="testimonial-wrapper">
+        {currentSet > 0 && (
+          <img
+            src={arrowback}
+            alt="Previous"
+            className="arrow-left"
+            onClick={handlePrev}
+          />
+        )}
+        <div className="testimonial-cards">
+          {currentTestimonials.map((testimonial, index) => (
+            <div key={index} className="testimonial-card">
+              <h5 className="testimonial-name">{testimonial.name}</h5>
+              <p className="testimonial-role">{testimonial.role}</p>
+              <p className="testimonial-text">{`"${testimonial.text}"`}</p>
+            </div>
+          ))}
+        </div>
+        {currentSet < totalSlides + 1 && (
+          <img
+            src={arrowfront}
+            alt="Next"
+            className="arrow-right"
+            onClick={handleNext}
+          />
+        )}
       </div>
       <div className="dots-container">
         {Array.from({ length: totalSlides }).map((_, index) => (
@@ -130,14 +140,6 @@ const TestimonialReview = () => {
           ></span>
         ))}
       </div>
-      {currentSet > 0 && (
-        <img
-          src={arrowback}
-          alt="Previous"
-          className="arrow-left"
-          onClick={handlePrev}
-        />
-      )}
     </div>
   );
 };

@@ -6,10 +6,22 @@ import facebook from "../Images/g10.png";
 import whatsapp from "../Images/whatsapp_symbol.png";
 import phone from "../Images/ri-phone-line.png";
 import mail from "../Images/ri-mail-line.png";
+import whatsappLogo from "../Images/whatsapp.png";
 
 const Footer = () => {
   return (
     <footer className="footer">
+      {/* whatsapp logo */}
+      <div className="whatsapp-logo">
+        <a
+          href="https://wa.me/234123456789"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={whatsappLogo} alt="Message Us" />
+          Message Us
+        </a>
+      </div>
       <div className="footer-container">
         {/* Logo and Contact Info */}
         <div className="footer-left">

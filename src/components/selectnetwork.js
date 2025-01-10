@@ -9,7 +9,6 @@ import network7 from "../Images/fiberone.png";
 import network8 from "../Images/smile-logo 1.png";
 import network9 from "../Images/swfitnglogo-removebg-preview 1.png";
 import network10 from "../Images/spectranet_ng_logo.png";
-import whatsappLogo from "../Images/whatsapp.png";
 
 function SelectNetwork() {
   const [selectedNetwork, setSelectedNetwork] = useState(null);
@@ -100,17 +99,6 @@ function SelectNetwork() {
           </table>
         </div>
       )}
-      {/* whatsapp logo */}
-      <div className="whatsapp-logo">
-        <a
-          href="https://wa.me/234123456789"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src={whatsappLogo} alt="Message Us" />
-          Message Us
-        </a>
-      </div>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import React from "react";
 const HowWeWorkIt = () => {
   return (
     <div className="how-we-work-container">
-      <h2 className="">How we Work it </h2>
+      <h2 className="Howweworkit-title">How we Work it </h2>
       {/* <div className="left-section">
         <h2>
           Our commitment to credibility and integrity sets us apart from other
