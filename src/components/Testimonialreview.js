@@ -1,40 +1,86 @@
-import React from "react";
 import React, { useState } from "react";
+import arrowfront from "../Images/arrowfront.png";
+import arrowback from "../Images/arrowback.png";
 
 const testimonials = [
   {
-    text: "Picture this: I’m in a meeting, low on data. Panic! But Datalst swooped in, saved the day. Thank You!",
     name: "Chukwugokie",
     role: "Content Marketer",
+    text: "Picture this: I’m in a meeting, low on data. Panic! But Data1st swooped in, save the day. Thank You!",
   },
   {
-    text: "Dear Datalst, thank you for your friendly reminders and always keeping me connected.",
     name: "Stella-Maris",
     role: "Actor",
+    text: "Dear Datalst, thank you for your friendly reminders and always keeping me connected.",
   },
   {
-    text: "I don’t believe how budget friendly these guys are, and my data legit lasts, you guys are the best.",
     name: "Kenny",
     role: "Tech Bro",
+    text: "I don’t believe how budget friendly these guys are, and my data legit lasts, you guys are the best.",
   },
   {
-    text: "The service is incredible, I get more than I paid for every single time. So happy with Datalst.",
-    name: "Jessica",
-    role: "Designer",
+    name: "Simi",
+    role: "Teacher",
+    text: "This website was very easy to use, I was worried I would struggle but this has encouraged me to continue using technology.",
   },
   {
-    text: "Amazing customer support and seamless connectivity. I can always count on Datalst.",
-    name: "John",
-    role: "Entrepreneur",
+    name: "Christine",
+    role: "Social Media Manager",
+    text: "The way this Data1st recharges data fast, for a reselling platform, and the way my data last, it’s like buying straight from the networks.",
   },
   {
-    text: "Fast, reliable, and affordable data. I’m never going back to my old provider.",
-    name: "Mia",
-    role: "Engineer",
+    name: "Fred",
+    role: "Accountant",
+    text: "Impressed by their reliability. Consistent service, wallet-friendly data plans. My bank account approves always on time.",
+  },
+  {
+    name: "Kenny",
+    role: "Tech Bro",
+    text: "I don’t believe how budget friendly these guys are, and my data legit lasts, you guys are the best.",
+  },
+  {
+    name: "Chukwugokie",
+    role: "Content Marketer",
+    text: "Picture this: I’m in a meeting, low on data. Panic! But Data1st swooped in, save the day. Thank You!",
+  },
+  {
+    name: "Stella-Maris",
+    role: "Actor",
+    text: "Dear Datalst, thank you for your friendly reminders and always keeping me connected.",
+  },
+  {
+    name: "Fred",
+    role: "Accountant",
+    text: "Impressed by their reliability. Consistent service, wallet-friendly data plans. My bank account approves always on time.",
+  },
+  {
+    name: "Simi",
+    role: "Teacher",
+    text: "This website was very easy to use, I was worried I would struggle but this has encouraged me to continue using technology.",
+  },
+  {
+    name: "Christine",
+    role: "Social Media Manager",
+    text: "The way this Data1st recharges data fast, for a reselling platform, and the way my data last, it’s like buying straight from the networks.",
+  },
+  {
+    name: "Stella-Maris",
+    role: "Actor",
+    text: "Dear Datalst, thank you for your friendly reminders and always keeping me connected.",
+  },
+  {
+    name: "Fred",
+    role: "Accountant",
+    text: "Impressed by their reliability. Consistent service, wallet-friendly data plans. My bank account approves always on time.",
+  },
+  {
+    name: "Kenny",
+    role: "Tech Bro",
+    text: "I don’t believe how budget friendly these guys are, and my data legit lasts, you guys are the best.",
   },
 ];
 
-const Testimonialreview = () => {
+const TestimonialReview = () => {
   const [currentSet, setCurrentSet] = useState(0);
 
   const handleNext = () => {
@@ -54,38 +100,46 @@ const Testimonialreview = () => {
     (currentSet + 1) * 3
   );
 
+  const totalSlides = Math.ceil(testimonials.length / 3);
+
   return (
-    <div className="container mt-5">
-      <h2 className="text-center">Testimonial & Reviews</h2>
-      <div className="row justify-content-center">
+    <div className="testimonial-container">
+      <h2 className="testimonial-title">Testimonial & Reviews</h2>
+      <div className="testimonial-cards">
         {currentTestimonials.map((testimonial, index) => (
-          <div key={index} className="col-md-4 mb-4">
-            <div className="card testimonial-card">
-              <div className="card-body text-center">
-                <p className="testimonial-text">{`"${testimonial.text}"`}</p>
-                <h5 className="card-title">{testimonial.name}</h5>
-                <p className="card-text">{testimonial.role}</p>
-              </div>
-            </div>
+          <div key={index} className="testimonial-card">
+            <h5 className="testimonial-name">{testimonial.name}</h5>
+            <p className="testimonial-role">{testimonial.role}</p>
+            <p className="testimonial-text">{`"${testimonial.text}"`}</p>
+            {index === 2 && totalSlides > 1 && (
+              <img
+                src={arrowfront}
+                alt="Next"
+                className="arrow-right"
+                onClick={handleNext}
+              />
+            )}
           </div>
         ))}
       </div>
-      <div className="d-flex justify-content-center">
-        <button className="carousel-control-prev" onClick={handlePrev}>
+      <div className="dots-container">
+        {Array.from({ length: totalSlides }).map((_, index) => (
           <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
+            key={index}
+            className={`dot ${index === currentSet ? "active-dot" : ""}`}
           ></span>
-        </button>
-        <button className="carousel-control-next" onClick={handleNext}>
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
-        </button>
+        ))}
       </div>
+      {currentSet > 0 && (
+        <img
+          src={arrowback}
+          alt="Previous"
+          className="arrow-left"
+          onClick={handlePrev}
+        />
+      )}
     </div>
   );
 };
 
-export default Testimonialreview;
+export default TestimonialReview;

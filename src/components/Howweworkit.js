@@ -6,7 +6,8 @@ import React from "react";
 const HowWeWorkIt = () => {
   return (
     <div className="how-we-work-container">
-      <div className="left-section">
+      <h2 className="">How we Work it </h2>
+      {/* <div className="left-section">
         <h2>
           Our commitment to credibility and integrity sets us apart from other
           reselling platforms.
@@ -32,7 +33,7 @@ const HowWeWorkIt = () => {
           />
         </div>
         <p>Visit the data usage page on your android/apple device settings.</p>
-      </div>
+      </div> */}
     </div>
   );
 };
