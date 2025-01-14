@@ -90,22 +90,6 @@
   box-sizing: border-box;
 }
 
-.whatsapp-logo a {
-  color: #332600;
-  text-decoration: none;
-  font-size: large;
-  font-weight: 600;
-}
-.whatsapp-logo img {
-  width: 80px;
-  cursor: pointer;
-}
-
-.whatsapp-logo:hover {
-  transform: scale(1.1);
-  transition: transform 0.3s ease;
-}
-
 .dropdown-table table {
   width: 100%;
   border-collapse: collapse;
@@ -138,6 +122,45 @@
   text-align: center;
   color: #332600;
 }
+
+.image-carousel {
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 1s ease-in-out;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.dots-container {
+  margin-top: 20px;
+}
+
+.dot {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin: 0 5px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.active-dot {
+  background-color: #806000; /* Your preferred color */
+}
+
 /* Howweworkitcss end  */
 
 /* Testimonialreviewcss  */
@@ -257,6 +280,22 @@
   width: 100px;
   float: right;
   cursor: pointer;
+}
+
+.whatsapp-logo a {
+  color: #332600;
+  text-decoration: none;
+  font-size: medium;
+  font-weight: 600;
+}
+.whatsapp-logo img {
+  width: 80px;
+  cursor: pointer;
+}
+
+.whatsapp-logo:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
 }
 .footer-container {
   display: flex;
