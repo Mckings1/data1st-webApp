@@ -1,11 +1,8 @@
 import React from "react";
-// import PaymentFlow from "./PaymentFlow";
 
 function DropdownTable({ toggleModal }) {
   return (
     <div className="dropdown-table">
-      {/* <PaymentFlow toggleModal={toggleModal} /> */}
-
       <table>
         <thead>
           <tr>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PaymentFlow from "./PaymentFlow";
-import DropdownTable from "./DropdownTable";
+// import DropdownTable from "./DropdownTable";
 
 import network1 from "../Images/mtn_group_icon.png";
 import network2 from "../Images/globacom_logo.png";
@@ -15,7 +15,6 @@ import network10 from "../Images/spectranet_ng_logo.png";
 
 function SelectNetwork() {
   const [selectedNetwork, setSelectedNetwork] = useState(null);
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   const handleLogoClick = (network) => {
     if (selectedNetwork === network) {
@@ -23,15 +22,6 @@ function SelectNetwork() {
     } else {
       setSelectedNetwork(network);
     }
-  };
-
-  const handleBuyOnlineClick = () => {
-    setShowPaymentModal(true); // Open the payment modal
-  };
-
-  const handlePaymentSuccess = () => {
-    alert("Payment successful!");
-    setShowPaymentModal(false); // Close the payment modal
   };
 
   return (
@@ -71,18 +61,8 @@ function SelectNetwork() {
         </div>
       </div>
 
-      {/* Render DropdownTable when a network is selected */}
-      {selectedNetwork && (
-        <DropdownTable
-          selectedNetwork={selectedNetwork}
-          onBuyOnlineClick={handleBuyOnlineClick}
-        />
-      )}
-
       {/* Render PaymentFlow when the modal is triggered */}
-      {showPaymentModal && (
-        <PaymentFlow onPaymentSuccess={handlePaymentSuccess} />
-      )}
+      {selectedNetwork && <PaymentFlow />}
     </div>
   );
 }

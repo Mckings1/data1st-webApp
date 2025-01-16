@@ -1,32 +1,82 @@
-import React, { useState } from "react";
-// import DropdownTable from "./DropdownTable";
+import React, { useState, useEffect } from "react";
+import image from "../Images/image.png";
+import checkbox from "../Images/checkbox.png";
+
+import DropdownTable from "./DropdownTable";
 import "../App.css";
 
 const PaymentFlow = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [step, setStep] = useState(1); // Step 1: Form, Step 2: Payment Method
   const [selectedPayment, setSelectedPayment] = useState("");
+  const [plan, setPlan] = useState("");
+  const [network, setNetwork] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  // const [paymentMethod, setPaymentMethod] = useState("");
+  const [amount] = useState("N160 (Fixed amount)");
+  const [countdown, setCountdown] = useState(30 * 60);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
     setStep(1); // Reset to initial form step
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    if (!network || !plan || !phoneNumber) {
+      alert("Please fill out all required fields!");
+      return;
+    }
     setStep(2); // Go to payment method selection
   };
 
   const handlePaymentMethod = (method) => {
     setSelectedPayment(method);
-    alert(`You selected: ${method}`);
+    // alert(`You selected: ${method}`);
+  };
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
+
+  // Countdown timer
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 0) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer); // Cleanup interval on unmount
+  }, []);
+  const handleProcessPayment = async () => {
+    try {
+      // Example API call to payment gateway (Commented out for now)
+      // const response = await fetch("/api/pay", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ method: paymentMethod, amount }),
+      // });
+      // const result = await response.json();
+
+      // Simulated success for now
+      setStep(3); // Move to step 3 for "Transaction Successful"
+      // alert(`Transaction Successful using ${paymentMethod}!`);
+      // setPaymentMethod("");
+      // onPaymentSuccess();
+    } catch (error) {
+      alert("An error occurred during payment processing.");
+    }
   };
 
   return (
     <div>
       {/* Button to open modal */}
-      <button onClick={toggleModal}>Buy Online Now</button>
-      {/* <DropdownTable toggleModal={toggleModal} /> */}
+      <DropdownTable toggleModal={toggleModal} />
       {/* Modal */}
       {isModalOpen && (
         <div className="modal-overlay">
@@ -38,26 +88,39 @@ const PaymentFlow = () => {
               <form onSubmit={handleSubmit}>
                 <div>
                   <label>Network</label>
-                  <select>
+                  <select
+                    value={network}
+                    onChange={(e) => setNetwork(e.target.value)}
+                  >
                     <option value="">Choose your Network</option>
-                    <option value="MTN">MTN</option>
-                    <option value="Glo">Glo</option>
-                    <option value="Airtel">Airtel</option>
-                    <option value="9mobile">9mobile</option>
+                    <option value="mtn">MTN</option>
+                    <option value="airtel">Airtel</option>
+                    <option value="glo">Glo</option>
+                    <option value="9mobile">9Mobile</option>
+                    {/* Add more network options as needed */}
                   </select>
                 </div>
                 <div>
                   <label>Data Plan</label>
-                  <select>
-                    <option value="">Choose your plan</option>
-                    <option value="1GB">1GB</option>
-                    <option value="2GB">2GB</option>
-                    <option value="5GB">5GB</option>
+                  <select
+                    value={plan}
+                    onChange={(e) => setPlan(e.target.value)}
+                  >
+                    <option value="">Choose your Plan</option>
+                    <option value="10GB">10GB</option>
+                    <option value="20GB">20GB</option>
+                    <option value="50GB">50GB</option>
+                    {/* Add more plan options */}
                   </select>
                 </div>
                 <div>
                   <label>Mobile Number</label>
-                  <input type="text" placeholder="Enter Phone Number" />
+                  <input
+                    type="tel"
+                    placeholder="Enter Phone Number"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                  />
                 </div>
                 <div>
                   <label>Amount</label>
@@ -100,7 +163,7 @@ const PaymentFlow = () => {
                 {selectedPayment === "card" && (
                   <div className="card-details">
                     <img
-                      src="your-image-path/logo.png"
+                      src={image}
                       alt="Payment Logo"
                       className="payment-logo"
                     />
@@ -118,9 +181,55 @@ const PaymentFlow = () => {
                       <label>CVV</label>
                       <input type="text" placeholder="123" />
                     </div>
-                    <button className="pay-btn">Pay NGN 240.00</button>
+                    <button onClick={handleProcessPayment}>
+                      Pay NGN 240.00
+                    </button>
                   </div>
                 )}
+                {selectedPayment === "transfer" && (
+                  <div className="transfer-details">
+                    <img
+                      src={image}
+                      alt="Payment Logo"
+                      className="payment-logo"
+                    />
+                    <p>Transfer {amount} to Paystack</p>
+                    <p>Checkout</p>
+                    <div>
+                      <p>BANK NAME</p>
+                      <p>Paystack-Titan</p>
+                    </div>
+                    <div>
+                      <p>ACCOUNT NUMBER</p>
+                      <p>0012345234</p>
+                    </div>
+                    <div>
+                      <p>AMOUNT</p>
+                      <p>{amount}</p>
+                    </div>
+                    <p>
+                      This account is for this transaction only and expires in{" "}
+                      {formatTime(countdown)}
+                    </p>
+                    <button onClick={handleProcessPayment}>
+                      I've sent the money
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {step === 3 && (
+              <div>
+                {/* Step 3: Transaction Successful */}
+                <h3>Transaction Successful!</h3>
+                {/* <p>Your payment has been processed successfully.</p> */}
+                <img
+                  src={checkbox}
+                  alt="checkbox Logo"
+                  className="checkbox-logo"
+                />
+                <button onClick={toggleModal}>Close</button>
               </div>
             )}
           </div>
