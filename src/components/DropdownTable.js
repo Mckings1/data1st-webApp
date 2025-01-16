@@ -1,8 +1,11 @@
 import React from "react";
+// import PaymentFlow from "./PaymentFlow";
 
-function DropdownTable({ selectedNetwork, onBuyOnlineClick }) {
+function DropdownTable({ toggleModal }) {
   return (
     <div className="dropdown-table">
+      {/* <PaymentFlow toggleModal={toggleModal} /> */}
+
       <table>
         <thead>
           <tr>
@@ -18,7 +21,7 @@ function DropdownTable({ selectedNetwork, onBuyOnlineClick }) {
             <td>#200</td>
             <td>30 Days</td>
             <td>
-              <button onClick={onBuyOnlineClick}>Buy Online Now</button>
+              <button onClick={toggleModal}>Buy Online Now</button>
             </td>
           </tr>
           <tr>
@@ -26,7 +29,7 @@ function DropdownTable({ selectedNetwork, onBuyOnlineClick }) {
             <td>#200</td>
             <td>60 Days</td>
             <td>
-              <button onClick={onBuyOnlineClick}>Buy Online Now</button>
+              <button onClick={toggleModal}>Buy Online Now</button>
             </td>
           </tr>
           <tr>
@@ -34,7 +37,7 @@ function DropdownTable({ selectedNetwork, onBuyOnlineClick }) {
             <td>#200</td>
             <td>90 Days</td>
             <td>
-              <button onClick={onBuyOnlineClick}>Buy Online Now</button>
+              <button onClick={toggleModal}>Buy Online Now</button>
             </td>
           </tr>
         </tbody>
