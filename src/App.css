@@ -91,9 +91,11 @@
 }
 
 .dropdown-table table {
-  width: 100%;
+  width: 60%;
   border-collapse: collapse;
   margin-top: 20px;
+  margin: auto;
+  color: #332600;
 }
 
 .dropdown-table th,
@@ -101,6 +103,18 @@
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
+  color: #554000;
+}
+.dropdown-table td button {
+  width: Hug (243px) px;
+  height: Hug (58px) px;
+  padding: 8px 12px 8px 12px;
+  gap: 10px;
+  border-radius: 12px 0px 0px 0px;
+  opacity: 0px;
+  cursor: pointer;
+  background-color: #554000;
+  color: #fff2cc;
 }
 
 .dropdown-table th {
