@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import PaymentFlow from "./PaymentFlow";
+
 import network1 from "../Images/mtn_group_icon.png";
 import network2 from "../Images/globacom_logo.png";
 import network3 from "../Images/airtel_logo.png";
@@ -76,7 +78,9 @@ function SelectNetwork() {
                 <td>$10</td>
                 <td>30 Days</td>
                 <td>
-                  <a href="https://example.com">Buy here</a>
+                  <button onClick={() => setShowModal(true)}>
+                    Buy Online Now
+                  </button>
                 </td>
               </tr>
               <tr>
@@ -84,7 +88,9 @@ function SelectNetwork() {
                 <td>$20</td>
                 <td>60 Days</td>
                 <td>
-                  <a href="https://example.com">Buy here</a>
+                  <button onClick={() => setShowModal(true)}>
+                    Buy Online Now
+                  </button>
                 </td>
               </tr>
               <tr>
@@ -92,7 +98,9 @@ function SelectNetwork() {
                 <td>$50</td>
                 <td>90 Days</td>
                 <td>
-                  <a href="https://example.com">Buy here</a>
+                  <button onClick={() => setShowModal(true)}>
+                    Buy Online Now
+                  </button>
                 </td>
               </tr>
             </tbody>
