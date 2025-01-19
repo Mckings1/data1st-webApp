@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import image1 from "../Images/image1.png";
-import image2 from "../Images/image1.png";
-import image3 from "../Images/image1.png";
-import image4 from "../Images/image1.png";
-import image5 from "../Images/image1.png";
-import image6 from "../Images/image1.png";
+import image1 from "../Images/How Slide 1.png";
+import image2 from "../Images/How Slide 2.png";
+import image3 from "../Images/How Slide 3.png";
+import image4 from "../Images/How Slide 4.png";
+import image5 from "../Images/How Slide 5.png";
+import image6 from "../Images/How Slide 6.png";
 
 const HowWeWork = () => {
   const [currentImage, setCurrentImage] = useState(0);
