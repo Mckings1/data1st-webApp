@@ -15,7 +15,7 @@ function DropdownTable({ toggleModal }) {
         <tbody>
           <tr>
             <td>1GB</td>
-            <td>#200</td>
+            <td>#300</td>
             <td>30 Days</td>
             <td>
               <button onClick={toggleModal}>Buy Online Now</button>
@@ -23,7 +23,7 @@ function DropdownTable({ toggleModal }) {
           </tr>
           <tr>
             <td>2GB</td>
-            <td>#200</td>
+            <td>#500</td>
             <td>60 Days</td>
             <td>
               <button onClick={toggleModal}>Buy Online Now</button>
@@ -31,7 +31,23 @@ function DropdownTable({ toggleModal }) {
           </tr>
           <tr>
             <td>5GB</td>
-            <td>#200</td>
+            <td>#1500</td>
+            <td>90 Days</td>
+            <td>
+              <button onClick={toggleModal}>Buy Online Now</button>
+            </td>
+          </tr>
+          <tr>
+            <td>10GB</td>
+            <td>#3000</td>
+            <td>90 Days</td>
+            <td>
+              <button onClick={toggleModal}>Buy Online Now</button>
+            </td>
+          </tr>
+          <tr>
+            <td>150GB</td>
+            <td>#9000</td>
             <td>90 Days</td>
             <td>
               <button onClick={toggleModal}>Buy Online Now</button>
