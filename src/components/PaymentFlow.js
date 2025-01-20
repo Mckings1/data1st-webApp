@@ -135,7 +135,7 @@ const PaymentFlow = () => {
                   </div>
                   <div>
                     <label>Amount</label>
-                    <input type="text" value="N160 (Fixed amount)" readOnly />
+                    <input type="text" value="N160 (Fixed)" readOnly />
                   </div>
                 </div>
                 <div>

@@ -81,6 +81,7 @@ const Footer = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="MTN Office Map"
+              className="iframe"
             ></iframe>
           </div>
         </div>
