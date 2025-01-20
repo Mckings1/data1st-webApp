@@ -19,7 +19,9 @@
   text-decoration: none;
   margin-right: 50px;
 }
-
+.nav {
+  border-bottom: 1px solid #806000;
+}
 .navlink-list {
   /* float: right; */
   font-weight: 600;
@@ -29,6 +31,8 @@
   color: #332600;
   padding: 10px;
   border-radius: 18px;
+  width: 120px;
+  text-align: center;
 }
 
 .navlink-list:hover {
@@ -124,6 +128,7 @@
   font-weight: bold;
 }
 /* selectnetworkcss end*/
+
 /* paymentflow css */
 .modal-overlay {
   position: fixed;
@@ -136,24 +141,29 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  font-weight: 600;
 }
 
 .modal-content {
-  background: #fef4d6;
-  padding: 20px;
+  background: #fff2cc;
+  /* align-items: center; */
+  text-align: center;
+  padding: 30px;
   border-radius: 10px;
-  width: 400px;
+  width: 520px;
+  height: 380px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
 }
-
+.closebtn {
+  /* border-bottom: 1px solid red; */
+  padding: 10px;
+}
 .close-btn {
   position: absolute;
   top: 10px;
   right: 10px;
-  font-size: 20px;
-  border: none;
-  background: none;
+  /* font-size: 10px; */
   cursor: pointer;
 }
 
@@ -164,29 +174,43 @@ label {
 
 input,
 select {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
+  width: 250px;
+  padding: 10px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+.phoneNumber {
+  width: 200px;
+  margin-right: 50px;
+}
+.networkDataplan {
+  display: flex;
+  justify-content: space-between;
+}
+.mobileNoAmt {
+  display: flex;
+  justify-content: space-between;
+}
 
 button {
-  background: #5a3e1b;
-  color: #fff;
+  background: #554000;
+  /* color: #fff; */
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: 400;
 }
 
 button:hover {
-  background: #463014;
+  background: #806000;
 }
 
 .payment-method {
   display: flex;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .payment-option {
@@ -199,12 +223,31 @@ button:hover {
 }
 
 .payment-option.active {
-  border: 2px solid #5a3e1b;
+  border: 2px solid #554000;
   background: #fef4d6;
 }
 
 .card-details {
   margin-top: 20px;
+}
+.details-one {
+  display: flex;
+  padding: 5px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  /* border: 1px solid red; */
+}
+.details-one img {
+  width: 20%;
+}
+.details-two {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.details-two input {
+  width: 80%;
 }
 
 .payment-logo {
@@ -217,8 +260,12 @@ button:hover {
   color: white;
   padding: 10px 15px;
   border-radius: 5px;
+  cursor: pointer;
+  margin: 0 auto;
 }
-
+.trans-success {
+  display: grid;
+}
 /* paymentflowend css */
 
 /* Howweworkitcss  */

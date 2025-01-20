@@ -6,7 +6,7 @@ import image4 from "../Images/How Slide 4.png";
 import image5 from "../Images/How Slide 5.png";
 import image6 from "../Images/How Slide 6.png";
 
-const HowWeWork = () => {
+function Howweworkit({ showTitle = true }) {
   const [currentImage, setCurrentImage] = useState(0);
   const images = [image1, image2, image3, image4, image5, image6];
 
@@ -20,7 +20,7 @@ const HowWeWork = () => {
 
   return (
     <div className="how-we-work-container">
-      <h2 className="Howweworkit-title">How we Work it</h2>
+      {showTitle && <h2 className="Howweworkit-title">How we Work it</h2>}
       <div className="image-carousel">
         <div className="carousel-images">
           <img
@@ -42,6 +42,6 @@ const HowWeWork = () => {
       </div>
     </div>
   );
-};
+}
 
-export default HowWeWork;
+export default Howweworkit;

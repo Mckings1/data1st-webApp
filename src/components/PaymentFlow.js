@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import image from "../Images/image.png";
 import checkbox from "../Images/checkbox.png";
-
+import closebtn from "../Images/xBtn.png";
 import DropdownTable from "./DropdownTable";
 import "../App.css";
 
@@ -53,6 +53,7 @@ const PaymentFlow = () => {
 
     return () => clearInterval(timer); // Cleanup interval on unmount
   }, []);
+  const isLessThanOneMinute = countdown < 60;
   const handleProcessPayment = async () => {
     try {
       // Example API call to payment gateway (Commented out for now)
@@ -81,66 +82,81 @@ const PaymentFlow = () => {
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <button className="close-btn" onClick={toggleModal}>
-              ×
-            </button>
+            <div className="closebtn">
+              <img
+                src={closebtn}
+                alt="close btn"
+                className="close-btn"
+                onClick={toggleModal}
+              />
+            </div>
+
             {step === 1 && (
               <form onSubmit={handleSubmit}>
-                <div>
-                  <label>Network</label>
-                  <select
-                    value={network}
-                    onChange={(e) => setNetwork(e.target.value)}
-                  >
-                    <option value="">Choose your Network</option>
-                    <option value="mtn">MTN</option>
-                    <option value="airtel">Airtel</option>
-                    <option value="glo">Glo</option>
-                    <option value="9mobile">9Mobile</option>
-                    {/* Add more network options as needed */}
-                  </select>
+                <div className="networkDataplan">
+                  <div>
+                    <label>Network</label>
+                    <select
+                      value={network}
+                      onChange={(e) => setNetwork(e.target.value)}
+                    >
+                      <option value="">Choose your Network</option>
+                      <option value="mtn">MTN</option>
+                      <option value="airtel">Airtel</option>
+                      <option value="glo">Glo</option>
+                      <option value="9mobile">9Mobile</option>
+                      {/* Add more network options as needed */}
+                    </select>
+                  </div>
+                  <div>
+                    <label>Data Plan</label>
+                    <select
+                      value={plan}
+                      onChange={(e) => setPlan(e.target.value)}
+                    >
+                      <option value="">Choose your Plan</option>
+                      <option value="10GB">10GB</option>
+                      <option value="20GB">20GB</option>
+                      <option value="50GB">50GB</option>
+                      {/* Add more plan options */}
+                    </select>
+                  </div>
+                </div>
+                <div className="mobileNoAmt">
+                  <div>
+                    <label>Mobile Number</label>
+                    <input
+                      type="tel"
+                      placeholder="Enter Phone Number"
+                      value={phoneNumber}
+                      className="phoneNumber"
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label>Amount</label>
+                    <input type="text" value="N160 (Fixed amount)" readOnly />
+                  </div>
                 </div>
                 <div>
-                  <label>Data Plan</label>
-                  <select
-                    value={plan}
-                    onChange={(e) => setPlan(e.target.value)}
-                  >
-                    <option value="">Choose your Plan</option>
-                    <option value="10GB">10GB</option>
-                    <option value="20GB">20GB</option>
-                    <option value="50GB">50GB</option>
-                    {/* Add more plan options */}
-                  </select>
-                </div>
-                <div>
-                  <label>Mobile Number</label>
-                  <input
-                    type="tel"
-                    placeholder="Enter Phone Number"
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <label>Amount</label>
-                  <input type="text" value="N160 (Fixed amount)" readOnly />
-                </div>
-                <div>
-                  <label>
-                    <input type="checkbox" />
+                  <label className="remindersCheckbox">
                     Want to be sent renewal reminders?
+                    <input type="checkbox" />
                   </label>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" className="modalBtn">
+                  Submit
+                </button>
               </form>
             )}
-
             {step === 2 && (
               <div>
-                <button className="close-btn" onClick={toggleModal}>
-                  ×
-                </button>
+                <img
+                  src={closebtn}
+                  alt="close btn"
+                  className="close-btn"
+                  onClick={toggleModal}
+                />
                 <h3>Choose a Payment Method</h3>
                 <div className="payment-method">
                   <button
@@ -162,65 +178,80 @@ const PaymentFlow = () => {
                 </div>
                 {selectedPayment === "card" && (
                   <div className="card-details">
-                    <img
-                      src={image}
-                      alt="Payment Logo"
-                      className="payment-logo"
-                    />
-                    <p>080 1234 5678</p>
-                    <p>Pay NGN 240.00</p>
-                    <div>
-                      <label>Card Number</label>
-                      <input type="text" placeholder="xxxx xxxx xxxx xxxx" />
+                    <div className="details-one">
+                      <img
+                        src={image}
+                        alt="Payment Logo"
+                        className="payment-logo"
+                      />
+                      <p>{phoneNumber}</p>
+                      <p>Pay NGN 240.00</p>
                     </div>
-                    <div>
-                      <label>Card Expiry</label>
-                      <input type="text" placeholder="mm/yyyy" />
+                    <div className="details-two">
+                      <div>
+                        {/* <p>Enter Card Details</p> */}
+                        <label>Card Number</label>
+                        <input type="text" placeholder="xxxx xxxx xxxx xxxx" />
+                      </div>
+                      <div>
+                        <label>Card Expiry</label>
+                        <input type="text" placeholder="mm/yyyy" />
+                      </div>
+                      <div>
+                        <label>CVV</label>
+                        <input type="text" placeholder="123" />
+                      </div>
                     </div>
-                    <div>
-                      <label>CVV</label>
-                      <input type="text" placeholder="123" />
-                    </div>
-                    <button onClick={handleProcessPayment}>
+
+                    <span onClick={handleProcessPayment} className="pay-btn">
                       Pay NGN 240.00
-                    </button>
+                    </span>
                   </div>
                 )}
                 {selectedPayment === "transfer" && (
                   <div className="transfer-details">
-                    <img
-                      src={image}
-                      alt="Payment Logo"
-                      className="payment-logo"
-                    />
-                    <p>Transfer {amount} to Paystack</p>
-                    <p>Checkout</p>
-                    <div>
-                      <p>BANK NAME</p>
-                      <p>Paystack-Titan</p>
+                    <div className="details-one">
+                      <img
+                        src={image}
+                        alt="Payment Logo"
+                        className="payment-logo"
+                      />
+                      <p>Transfer {amount} to Paystack</p>
+                      {/* <p>Checkout</p> */}
                     </div>
-                    <div>
-                      <p>ACCOUNT NUMBER</p>
-                      <p>0012345234</p>
+                    <div className="details-two">
+                      <div>
+                        <p>BANK NAME</p>
+                        <p>Paystack-Titan</p>
+                      </div>
+                      <div>
+                        <p>ACCOUNT NUMBER</p>
+                        <p>0012345234</p>
+                      </div>
+                      <div>
+                        <p>AMOUNT</p>
+                        <p>{amount}</p>
+                      </div>
                     </div>
-                    <div>
-                      <p>AMOUNT</p>
-                      <p>{amount}</p>
-                    </div>
-                    <p>
+                    <p style={{ fontSize: "10px" }}>
                       This account is for this transaction only and expires in{" "}
-                      {formatTime(countdown)}
+                      <span
+                        style={{
+                          color: isLessThanOneMinute ? "red" : "inherit",
+                        }}
+                      >
+                        {formatTime(countdown)}
+                      </span>
                     </p>
-                    <button onClick={handleProcessPayment}>
+                    <span onClick={handleProcessPayment} className="pay-btn">
                       I've sent the money
-                    </button>
+                    </span>
                   </div>
                 )}
               </div>
             )}
-
             {step === 3 && (
-              <div>
+              <div className="trans-success">
                 {/* Step 3: Transaction Successful */}
                 <h3>Transaction Successful!</h3>
                 {/* <p>Your payment has been processed successfully.</p> */}
@@ -228,8 +259,22 @@ const PaymentFlow = () => {
                   src={checkbox}
                   alt="checkbox Logo"
                   className="checkbox-logo"
+                  width={100}
+                  style={{ margin: "0 auto" }}
                 />
-                <button onClick={toggleModal}>Close</button>
+                <button
+                  onClick={toggleModal}
+                  className="modalBtn"
+                  style={{
+                    color: "white",
+                    width: "200px",
+                    margin: "0 auto",
+                    fontSize: "18px",
+                    marginTop: "20px",
+                  }}
+                >
+                  Back to Home
+                </button>
               </div>
             )}
           </div>
