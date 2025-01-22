@@ -13,12 +13,62 @@ const PaymentFlow = () => {
   const [network, setNetwork] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   // const [paymentMethod, setPaymentMethod] = useState("");
-  const [amount] = useState("N160 (Fixed amount)");
+  // const [amount] = useState("N160 (Fixed amount)");
+  const [amount, setAmount] = useState("");
   const [countdown, setCountdown] = useState(30 * 60);
+  const pricing = {
+    mtn: {
+      "500MB": 146,
+      "1GB": 289,
+      "2GB": 578,
+      "3GB": 866,
+      "5GB": 1443,
+      "10GB": 2886,
+    },
+    airtel: {
+      "500MB": 161,
+      "1GB": 308,
+      "2GB": 615,
+      "5GB": 1538,
+      "10GB": 3075,
+    },
+    glo: {
+      "500MB": 140,
+      "1GB": 278,
+      "2GB": 555,
+      "3GB": 833,
+      "5GB": 1388,
+      "10GB": 2775,
+    },
+    "9mobile": {
+      "500MB": 83,
+      "1GB": 150,
+      "2GB": 300,
+      "3GB": 450,
+      "5GB": 750,
+      "10GB": 1499,
+    },
+  };
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
     setStep(1); // Reset to initial form step
+  };
+  const handleNetworkChange = (e) => {
+    setNetwork(e.target.value);
+    setPlan(""); // Reset plan when network changes
+    setAmount(""); // Reset amount when network changes
+  };
+
+  const handlePlanChange = (e) => {
+    const selectedPlan = e.target.value;
+    setPlan(selectedPlan);
+    // Update amount if network and plan are selected
+    if (network && pricing[network] && pricing[network][selectedPlan]) {
+      setAmount(`#${pricing[network][selectedPlan]}`);
+    } else {
+      setAmount(""); // Reset amount if no valid price is found
+    }
   };
 
   const handleSubmit = () => {
@@ -26,19 +76,15 @@ const PaymentFlow = () => {
       alert("Please fill out all required fields!");
       return;
     }
+    alert(`Data Plan Purchased: ${network} - ${plan} for ${amount}`);
     setStep(2); // Go to payment method selection
   };
 
-  const handlePaymentMethod = (method) => {
-    setSelectedPayment(method);
-    // alert(`You selected: ${method}`);
-  };
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
-
   // Countdown timer
   useEffect(() => {
     const timer = setInterval(() => {
@@ -54,6 +100,11 @@ const PaymentFlow = () => {
     return () => clearInterval(timer); // Cleanup interval on unmount
   }, []);
   const isLessThanOneMinute = countdown < 60;
+  // ProcesspaymentMethod
+  const handlePaymentMethod = (method) => {
+    setSelectedPayment(method);
+    // alert(`You selected: ${method}`);
+  };
   const handleProcessPayment = async () => {
     try {
       // Example API call to payment gateway (Commented out for now)
@@ -96,29 +147,24 @@ const PaymentFlow = () => {
                 <div className="networkDataplan">
                   <div>
                     <label>Network</label>
-                    <select
-                      value={network}
-                      onChange={(e) => setNetwork(e.target.value)}
-                    >
+                    <select value={network} onChange={handleNetworkChange}>
                       <option value="">Choose your Network</option>
                       <option value="mtn">MTN</option>
                       <option value="airtel">Airtel</option>
                       <option value="glo">Glo</option>
                       <option value="9mobile">9Mobile</option>
-                      {/* Add more network options as needed */}
                     </select>
                   </div>
                   <div>
                     <label>Data Plan</label>
-                    <select
-                      value={plan}
-                      onChange={(e) => setPlan(e.target.value)}
-                    >
+                    <select value={plan} onChange={handlePlanChange}>
                       <option value="">Choose your Plan</option>
+                      <option value="500MB">500MB</option>
+                      <option value="1GB">1GB</option>
+                      <option value="2GB">2GB</option>
+                      <option value="3GB">3GB</option>
+                      <option value="5GB">5GB</option>
                       <option value="10GB">10GB</option>
-                      <option value="20GB">20GB</option>
-                      <option value="50GB">50GB</option>
-                      {/* Add more plan options */}
                     </select>
                   </div>
                 </div>
@@ -135,7 +181,11 @@ const PaymentFlow = () => {
                   </div>
                   <div>
                     <label>Amount</label>
-                    <input type="text" value="N160 (Fixed)" readOnly />
+                    <input
+                      type="text"
+                      value={amount || "Select a plan"}
+                      readOnly
+                    />
                   </div>
                 </div>
                 <div>
@@ -185,7 +235,7 @@ const PaymentFlow = () => {
                         className="payment-logo"
                       />
                       <p>{phoneNumber}</p>
-                      <p>Pay NGN 240.00</p>
+                      <p>Pay {amount}</p>
                     </div>
                     <div className="details-two">
                       <div>
@@ -204,7 +254,7 @@ const PaymentFlow = () => {
                     </div>
 
                     <span onClick={handleProcessPayment} className="pay-btn">
-                      Pay NGN 240.00
+                      Pay {amount}
                     </span>
                   </div>
                 )}
